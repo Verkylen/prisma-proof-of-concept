@@ -8,9 +8,32 @@ datasource db {
 }
 
 model jobs {
-  id       Int     @id @default(autoincrement())
-  position String
-  salary   Int
-  summoned Boolean @default(false)
-  company  String
+  id          Int     @id @default(autoincrement())
+  position    String
+  salary      Int
+  summoned    Boolean @default(false)
+  company     String
+  jobs_skills jobs_skills[]
+}
+
+model skills {
+  id          Int    @id @default(autoincrement())
+  name        String @unique
+  jobs_skills jobs_skills[]
+  myskills    myskills[]
+}
+
+model jobs_skills {
+  id      Int    @id @default(autoincrement())
+  jobId   Int
+  jobs    jobs   @relation(fields: [jobId], references: [id])
+  skillId Int
+  skills  skills @relation(fields: [skillId], references: [id])
+}
+
+model myskills {
+  id      Int    @id @default(autoincrement())
+  skillId Int
+  skills  skills @relation(fields: [skillId], references: [id])
+  level   String
 }

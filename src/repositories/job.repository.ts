@@ -18,3 +18,12 @@ export function upsertJob(job: PartialJobEntity) {
         update: job
     });
 }
+
+export function insertRequiredSkill(jobId: number, skillId: number) {
+    return prisma.jobs_skills.createMany({
+        data:{
+            jobId,
+            skillId
+        }
+    });
+}

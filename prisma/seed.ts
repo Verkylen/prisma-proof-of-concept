@@ -122,7 +122,38 @@ function main() {
 }
 
 main()
-    .then(() => console.log('Registered.'))
+    .then(() => console.log('Jobs registered.'))
+    .catch(response => {
+        console.log(response);
+        process.exit(1);
+    })
+    .finally(async () => await prisma.$disconnect());
+
+
+function subMain() {
+    return prisma.skills.createMany({
+        data: [
+            {name: 'React'},
+            {name: 'Docker'},
+            {name: 'Vue'},
+            {name: 'Angular'},
+            {name: 'Python'},
+            {name: 'JavaScript'},
+            {name: 'PostgreSQL'},
+            {name: 'MySQL'},
+            {name: 'Node'},
+            {name: 'CSS'},
+            {name: 'MongoDB'},
+            {name: 'Git'},
+            {name: 'TypeScript'},
+            {name: 'Prisma'},
+            {name: 'Express'}
+        ]
+    });
+}
+
+subMain()
+    .then(() => console.log('Skills registered.'))
     .catch(response => {
         console.log(response);
         process.exit(1);
