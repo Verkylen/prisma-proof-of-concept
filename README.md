@@ -162,3 +162,9 @@ Formato da resposta à requisição:
 ```
 
 ---
+
+Diagrama entidade-relacionamento:
+
+![](./image/DER.png)
+
+---
