@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { postMySkills, deleteMySkill, patchMySkill, getMySkill } from "../controllers/myskill.controller.js";
 
-const mySkillRouter = Router();
+const mySkillRouter: Router = Router();
 
 mySkillRouter.post('/myskills', postMySkills);
 

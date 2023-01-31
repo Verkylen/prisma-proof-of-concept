@@ -1,7 +1,7 @@
 import { postJob, getJobs, patchJob } from "../controllers/job.controller.js";
 import { Router } from "express";
 
-const jobRouter = Router();
+const jobRouter: Router = Router();
 
 jobRouter.get('/jobs', getJobs);
 

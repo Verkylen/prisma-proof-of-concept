@@ -1,18 +1,18 @@
-import { jobs, skills } from "@prisma/client";
-import { Job, PartialJobEntity } from "../protocols/job.js";
+import { jobs, Prisma, skills } from "@prisma/client";
+import { Job, PartialJobEntity, JobWithSkills } from "../protocols/job.js";
 import jobRepository from "../repositories/job.repository.js";
 
-async function getJobs() {
-    const data = await jobRepository.selectJobs();
+async function getJobs(): Promise<JobWithSkills[]> {
+    const data: JobWithSkills[] = await jobRepository.selectJobs();
 
     return data;
 }
 
-function postJob(job: Job) {
+function postJob(job: Job): Prisma.Prisma__jobsClient<jobs, never> {
     return jobRepository.insertJob(job);
 }
 
-function patchJob(id: number) {
+function patchJob(id: number): Prisma.Prisma__jobsClient<jobs, never> {
     return jobRepository.updateJob(id);
 }
 

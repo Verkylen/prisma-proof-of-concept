@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { Job, PartialJobEntity } from "../protocols/job.js";
+import { Job, JobWithSkills, PartialJobEntity } from "../protocols/job.js";
 import jobService from "../services/job.service.js";
 
 export async function getJobs({}, res: Response) {
     try {
-        const data = await jobService.getJobs();
+        const data: JobWithSkills[] = await jobService.getJobs();
 
         res.send(data);
     } catch {

@@ -1,15 +1,16 @@
+import { Prisma, PrismaPromise, skills } from "@prisma/client";
 import SkillRepository from "../repositories/skill.repository.js";
 
-function postSkills(data) {
+function postSkills(data: {name: string;}[]): PrismaPromise<Prisma.BatchPayload> {
     return SkillRepository.insertSkill(data);
 }
 
-function postJobSkills(data) {
+function postJobSkills(data: {jobId: number; skillId: number;}[]): PrismaPromise<Prisma.BatchPayload> {
     return SkillRepository.insertRequiredSkills(data);
 }
 
-async function getSkills() {
-    const data = await SkillRepository.selectSkills();
+async function getSkills(): Promise<skills[]> {
+    const data: skills[] = await SkillRepository.selectSkills();
 
     return data;
 }

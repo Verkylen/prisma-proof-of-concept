@@ -1,3 +1,4 @@
+import { skills } from "@prisma/client";
 import { Request, Response } from "express";
 import skillService from "../services/skill.service.js";
 
@@ -19,9 +20,9 @@ export async function postJobSkills(req: Request, res: Response) {
     }
 }
 
-export async function getSkills(req: Request, res: Response) {
+export async function getSkills({}, res: Response) {
     try {
-        const data = await skillService.getSkills();
+        const data: skills[] = await skillService.getSkills();
         res.send(data);
     } catch {
         res.sendStatus(500);

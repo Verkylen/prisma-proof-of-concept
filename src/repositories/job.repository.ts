@@ -1,7 +1,8 @@
+import { jobs, Prisma, PrismaPromise } from "@prisma/client";
 import prisma from "../database.js";
-import { Job, PartialJobEntity } from "../protocols/job.js";
+import { Job, PartialJobEntity, JobWithSkills } from "../protocols/job.js";
 
-export function selectJobs() {
+export function selectJobs(): PrismaPromise<JobWithSkills[]> {
     return prisma.jobs.findMany({
         include: {
             jobs_skills: {
@@ -14,11 +15,11 @@ export function selectJobs() {
     });
 }
 
-export function insertJob(job: Job) {
+export function insertJob(job: Job): Prisma.Prisma__jobsClient<jobs, never> {
     return prisma.jobs.create({data: job});
 }
 
-export function updateJob(id: number) {      
+export function updateJob(id: number): Prisma.Prisma__jobsClient<jobs, never> {      
     return prisma.jobs.update({
         where: {id},
         data: {
