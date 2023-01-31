@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import { Job, PartialJobEntity } from "../protocols/job.js";
-import { insertJob, selectJobs, upsertJob } from "../repositories/job.repository.js";
+import jobService from "../services/job.service.js";
 
 export async function getJobs({}, res: Response) {
     try {
-        const data = await selectJobs();
+        const data = await jobService.getJobs();
 
         res.send(data);
     } catch {
@@ -13,10 +13,8 @@ export async function getJobs({}, res: Response) {
 }
 
 export async function postJob(req: Request, res: Response) {
-    const {body}: {body: Job} = req;
-
     try {
-        await insertJob(body);
+        await jobService.postJob(req.body as Job);
 
         res.sendStatus(200);
     } catch {
@@ -25,10 +23,8 @@ export async function postJob(req: Request, res: Response) {
 }
 
 export async function patchJob(req: Request, res: Response) {
-    const {body}: {body: PartialJobEntity} = req;
-
     try {
-        await upsertJob(body);
+        await jobService.patchJob(Number(req.params.id));
 
         res.sendStatus(200);
     } catch {

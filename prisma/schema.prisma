@@ -33,7 +33,7 @@ model jobs_skills {
 
 model myskills {
   id      Int    @id @default(autoincrement())
-  skillId Int
+  skillId Int    @unique
   skills  skills @relation(fields: [skillId], references: [id])
   level   String
 }

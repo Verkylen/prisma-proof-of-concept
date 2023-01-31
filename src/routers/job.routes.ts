@@ -5,8 +5,8 @@ const jobRouter = Router();
 
 jobRouter.get('/jobs', getJobs);
 
-jobRouter.post('/job', postJob);
+jobRouter.post('/jobs', postJob);
 
-jobRouter.patch('/job', patchJob);
+jobRouter.patch('/jobs/:id', patchJob);
 
 export default jobRouter;

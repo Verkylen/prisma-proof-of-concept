@@ -159,3 +159,30 @@ subMain()
         process.exit(1);
     })
     .finally(async () => await prisma.$disconnect());
+
+function newMain() {
+    return prisma.jobs_skills.createMany({
+        data: [
+            {
+                jobId: 1,
+                skillId: 1
+            },
+            {
+                jobId: 1,
+                skillId: 2
+            },
+            {
+                jobId: 2,
+                skillId: 1
+            }
+        ]
+    });
+}
+
+newMain()
+    .then(() => console.log('Skills from jobs registered.'))
+    .catch(response => {
+        console.log(response);
+        process.exit(1);
+    })
+    .finally(async () => await prisma.$disconnect());

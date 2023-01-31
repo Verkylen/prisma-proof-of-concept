@@ -2,28 +2,35 @@ import prisma from "../database.js";
 import { Job, PartialJobEntity } from "../protocols/job.js";
 
 export function selectJobs() {
-    return prisma.jobs.findMany();
+    return prisma.jobs.findMany({
+        include: {
+            jobs_skills: {
+                select: {
+                    id: true,
+                    skills: true
+                }
+            }
+        }
+    });
 }
 
 export function insertJob(job: Job) {
     return prisma.jobs.create({data: job});
 }
 
-export function upsertJob(job: PartialJobEntity) {    
-    return prisma.jobs.upsert({
-        where: {
-            id: 'id' in job ? job.id : 0
-        },
-        create: job as Job,
-        update: job
-    });
-}
-
-export function insertRequiredSkill(jobId: number, skillId: number) {
-    return prisma.jobs_skills.createMany({
-        data:{
-            jobId,
-            skillId
+export function updateJob(id: number) {      
+    return prisma.jobs.update({
+        where: {id},
+        data: {
+            summoned: true
         }
     });
 }
+
+const jobRepository = {
+    selectJobs,
+    insertJob,
+    updateJob
+};
+
+export default jobRepository;
