@@ -165,8 +165,8 @@ Formato da resposta à requisição:
 
 Diagrama entidade-relacionamento:
 
-<figure>
+<section align='center'>
   <img src='./image/DER.png'/>
-</figure>
+</section>
 
 ---
