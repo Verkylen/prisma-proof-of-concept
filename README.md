@@ -165,6 +165,8 @@ Formato da resposta à requisição:
 
 Diagrama entidade-relacionamento:
 
-![](./image/DER.png)
+<figure>
+  <img src='./image/DER.png'/>
+</figure>
 
 ---
