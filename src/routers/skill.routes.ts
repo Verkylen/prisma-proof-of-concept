@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { postSkills, postJobSkills, getSkills } from "../controllers/skill.controller";
+import { postSkills, postJobSkills, getSkills } from "../controllers/skill.controller.js";
 
 const skillsRouter = Router();
 

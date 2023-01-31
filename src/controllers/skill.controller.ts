@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
-import skillService from "../services/skill.service";
+import skillService from "../services/skill.service.js";
 
 export async function postSkills(req: Request, res: Response) {
     try {
-        await skillService.postSkills(req.body.name);
+        await skillService.postSkills(req.body);
+        res.sendStatus(201);
     } catch {
         res.sendStatus(500);
     }
@@ -12,6 +13,7 @@ export async function postSkills(req: Request, res: Response) {
 export async function postJobSkills(req: Request, res: Response) {
     try {
         await skillService.postJobSkills(req.body);
+        res.sendStatus(201);
     } catch {
         res.sendStatus(500);
     }

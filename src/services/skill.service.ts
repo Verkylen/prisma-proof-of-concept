@@ -1,7 +1,7 @@
-import SkillRepository from "../repositories/skill.repository";
+import SkillRepository from "../repositories/skill.repository.js";
 
-function postSkills(name: string) {
-    return SkillRepository.insertSkill(name);
+function postSkills(data) {
+    return SkillRepository.insertSkill(data);
 }
 
 function postJobSkills(data) {

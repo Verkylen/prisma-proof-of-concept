@@ -1,8 +1,8 @@
 import prisma from "../database.js";
 
-export function insertSkill(name: string) {
+export function insertSkill(data) {
     return prisma.skills.createMany({
-        data: [{name}],
+        data,
         skipDuplicates: true
     });
 }
