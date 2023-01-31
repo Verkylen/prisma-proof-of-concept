@@ -4,7 +4,7 @@ import mySkillService from "../services/myskill.service.js";
 
 export async function postMySkills(req: Request, res: Response) {
     try {
-        await mySkillService.postMySkills(req.body);
+        await mySkillService.postMySkills(req.body as {skillId: number; level: string;}[]);
         
         res.sendStatus(201);
     } catch {
